@@ -1,0 +1,416 @@
+Start            0000h      C
+Ext0_int         0003h      C
+XTRN_ext0_int    4003h      C
+Tim0_int         000bh      C
+XTRN_tim0_int    4003h      C
+Ext1_int         0013h      C
+XTRN_ext1_int    4013h      C
+Tim1_int         001bh      C
+XTRN_tim1_int    401bh      C
+Tim2_int         0023h      C
+XTRN_tim2_int    4023h      C
+USER_con_output  4030h      C
+USER_con_status  4033h      C
+USER_output_vec  403Ch      C
+USER_calls       4100h      C
+
+reset_opt_activ  2001h      C
+cmd_ext_activ    2002h      C
+envoke_cmd_ext   2048h      C
+get_user_vect    2070h      C
+get_user_lookup  2078h      C
+user_asm_reset   2090h      C
+
+
+ret_1            0526h      C
+ret_2            055eh      C
+ret_3            05e0h      C
+ret_4            06c6h      C
+ret_5            07bdh      C
+ret_6            0ad3h      C
+ret_7            0ce1h      C
+ret_8            0d5bh      C
+ret_9            1204h      C
+ret_10           1379h      C
+ret_11           1397h      C
+ret_12           156bh      C
+ret_13           1924h      C
+ret_14           1a81h      C
+ret_15           1bb1h      C
+ret_16           1bf0h      C
+ret_17           1c28h      C
+ret_18           1cc2h      C
+ret_19           1d53h      C
+ret_20           1d86h      C
+ret_21           1e57h      C
+ret_22           1e69h      C
+ret_23           1e73h      C
+ret_24           1e84h      C
+ret_25           1f03h      C
+ret_26           1f4bh      C
+
+call_BAS_entry   0030h      C
+serial_int       0044h      C
+get_tabel_addr   095fh      C
+test_RB0         1936h      C
+
+Default_regs     0387h      C
+Check_asm_rst    0396h      C
+Clear_256B_ram   039eh      C
+Set_mem_vars     03a4h      C
+EPROM_prg_mode   03B0h      C
+EPROM_RCAP2      03bch      C
+EPROM_MTOP       03c2h      C
+
+Auto_Baudrate    041ch      C
+Show_signon_msg  0437h      C
+Get_Xbyte_R3R1   0495h      C
+A_to_Ext_R2R0    04d6h      C
+
+[DPTR]_to_R2R0   056dh      C
+
+Send_CRLF        069fh      C
+Show_ROM_msg     06A7h      C
+Get_DPTR_char    06A9h      C
+CON_line_output  06b9h      C
+CON_line_input   06d2h      C
+
+send_[R5]        070bh      C
+Tst_XOFF         0711h      C
+Tst_user_CON     0721h      C
+Tst_LP_CON_out   0734h      C
+Wait_for_TI      0759h      C
+Tst_CR           0760h      C
+Tst_LF           0766h      C
+Tst_BS           0774h      C
+Tst_space        0779h      C
+Pop_regs         0780h      C
+
+Tst_output_trap  078Bh      C
+No_output_trap   0793h      C
+
+Tst_XOFF         07a4h      C
+Tst_XON          07a9h      C
+Tst_CTRLC        07aeh      C
+
+Wait_for_RI      097Bh      C
+
+Show_prgrmmng    04D0h      C
+Show_bad_arg     09c0h      C
+Show_array_size  0df5h      C
+Show_div_by_0    1021h      C
+Show_Arr_undfl   1027h      C
+Show_Arr_overfl  102dh      C
+Show_mem_alloc   15a0h      C
+Show_badsyntax   1881h      C
+Show_I_stack     1886h      C
+
+argstack_to_A    123eh      C
+
+calc_EXP         1316h      C
+calc_MUL         119bh      C
+calc_ADD         1738h      C
+calc_DIV         13f5h      C
+calc_SUB         1713h      C
+
+Get_e_const      141Bh      C
+calc_XOR         1483h      C
+calc_AND         146fh      C
+
+[TOS]<-[IE]      14a4h      C
+[TOS]<-[IP]      14a8h      C
+[TOS]<-[TIM0]    14ach      C
+[TOS]<-[TIM1]    14b2h      C
+[TOS]<-[TIM2]    14b8h      C
+[TOS]<-[T2CN]    14beh      C
+[TOS]<-[TCON]    14c2h      C
+[TOS]<-[TMOD]    14c6h      C
+[TOS]<-[RCP2]    14cah      C
+[TOS]<-[PRT1]    14d0h      C
+[TOS]<-[PCON]    14d4h      C
+
+inc_R2R0         1561h      C
+inc_R3R1         1566h      C
+
+Std_XTAL_freq    17E0h      D6
+E_2_7182818      17ECh      D6
+PI_3_1415926     17F8h      D6
+
+R3R1_to_DPTR     0573h      C
+
+goto_CMD_mode    177eh      C
+init_D23h_D26h   0c34h      C
+init_BAStxtptr   1736h      C
+check_cmdexp     1781h      C
+show_READY       178Eh      C
+
+ABS_tos          137Ah      C
+INT_tos          1358h      C
+SIGN_tos         1380h      C
+NOT_tos          1481h      C
+PI_tos           146ah      C
+
+LET_token        0173h      S4   ; "LET"
+CLEAR_token      0177h      S6
+PUSH_token       017Dh      S5
+GOTO_token       0182h      S5
+PWM_token        0187h      S4
+PH0._token       018Bh      S5
+UI_token         0190h      S3
+UO_token         0193h      S3
+POP_token        0196h      S4
+PRINT_token      019ah      S6
+P._token         01a0h      S3
+?_token          01a3h      S2
+CALL_token       01a5h      S5
+DIM_token        01aah      S4
+STRING_token     01aeh      S7
+BAUD_token       01b5h      S5
+CLOCK_token      01bah      S6
+PH1._token       01c0h      S5
+STOP_token       01c5h      S5
+ONTIME_token     01cah      S7
+ONEX1_token      01d1h      S6
+RETI_token       01d7h      S5
+DO_token         01dch      S3
+RESTORE_token    01dfh      S8
+REM_token        01e7h      S4
+NEXT_token       01ebh      S5
+ONERR_token      01f0h      S6
+ON_token         01f6h      S3
+INPUT_token      01f9h      S6
+READ_token       01ffh      S5
+DATA_token       0204h      S5
+RETURN_token     0209h      S7
+IF_token         0210h      S3
+GOSUB_token      0213h      S6
+FOR_token        0219h      S4
+WHILE_token      021dh      S6
+UNTIL_token      0223h      S6
+END_token        0229h      S4
+TAB_token        022dh      S4
+THEN_token       0231h      S5
+TO_token         0236h      S3
+STEP_token       0239h      S5
+ELSE_token       023eh      S5
+SPC_token        0243h      S4
+CR_token         0247h      S3
+IDLE_token       024ah      S5
+ST@_token        024fh      S4
+LD@_token        0253h      S4
+PGM_token        0257h      S4
+RROM_token       025bh      S5
+(_token          0260h      S2
+PWR_token        0262h      S3
+MUL_token        0265h      S2
+PLUS_token       0267h      S2
+DIV_token        0269h      S2
+MIN_token        026bh      S2
+EQ_token         027eh      S2
+GE_token         0280h      S3
+LE_token         0284h      S3
+NE_token         0286h      S3
+LT_token         0289h      S2
+
+XOR_token        026dh      S6
+AND_token        0273h      S6
+OR_token         0279h      S5
+ABS_token        028dh      S4
+INT_token        0291h      S4
+SGN_token        0295h      S4
+NOT_token        0299h      S4
+COS_token        029dh      S4
+TAN_token        02a1h      S4
+SIN_token        02a5h      S4
+SQR_token        02a9h      S4
+CBY_token        02adh      S4
+EXP_token        02b1h      S4
+ATN_token        02b5h      S4
+LOG_token        02b9h      S4
+DBY_token        02bdh      S4
+XBY_token        02c1h      S4
+PI_token         02c5h      S3
+RND_token        02c8h      S4
+GET_token        02cch      S4
+FREE_token       02d0h      S5
+LEN_token        02d5h      S4
+XTAL_token       02d9h      S5
+MTOP_token       02deh      S5
+IE_token         02e3h      S3
+IP_token         02e6h      S3
+TIMER0_token     02e9h      S7
+TIMER1_token     02f0h      S7
+TIMER2_token     02F7h      S7
+TIME_token       02feh      S5
+T2CON_token      0303h      S6
+TCON_token       0309h      S5
+TMOD_token       030eh      S5
+RCAP2_token      0313h      S6
+PORT1_token      0319h      S6
+PCON_token       031fh      S5
+ASC(_token       0324h      S5
+USING(_token     0329h      S7
+U.(token         0330h      S4
+CHR(_token       0334h      S5
+RUN_token        0339h      S4
+LIST_token       033dh      S5
+NULL_token       0342h      S5
+NEW_token        0347h      S4
+CONT_token       034bh      S5
+PROG_token       0350h      S5
+XFER_token       0355h      S5
+RAM_token        035ah      S4
+ROM_token        035eh      S4
+FPROG_token      0362h      S6
+
+opbyte_00_entry  0047h      D2
+opbyte_01_entry  0049h      D2
+opbyte_02_entry  004bh      D2
+opbyte_03_entry  004dh      D2
+opbyte_04_entry  004fh      D2
+opbyte_05_entry  0051h      D2
+opbyte_06_entry  0053h      D2
+opbyte_07_entry  0055h      D2
+opbyte_08_entry  0057h      D2
+opbyte_09_entry  0059h      D2
+opbyte_0a_entry  005bh      D2
+opbyte_0b_entry  005dh      D2
+opbyte_0c_entry  005fh      D2
+opbyte_0d_entry  0061h      D2
+opbyte_0e_entry  0063h      D2
+opbyte_0f_entry  0065h      D2
+opbyte_10_entry  0067h      D2
+opbyte_11_entry  0069h      D2
+opbyte_12_entry  006bh      D2
+opbyte_13_entry  006dh      D2
+opbyte_14_entry  006fh      D2
+opbyte_15_entry  0071h      D2
+opbyte_16_entry  0073h      D2
+opbyte_17_entry  0075h      D2
+opbyte_18_entry  0077h      D2
+opbyte_19_entry  0079h      D2
+opbyte_1a_entry  007bh      D2
+opbyte_1b_entry  007dh      D2
+opbyte_1c_entry  007fh      D2
+opbyte_1d_entry  0081h      D2
+opbyte_1e_entry  0083h      D2
+opbyte_1f_entry  0085h      D2
+opbyte_20_entry  0087h      D2
+opbyte_21_entry  0089h      D2
+opbyte_22_entry  008bh      D2
+opbyte_23_entry  008dh      D2
+opbyte_24_entry  008fh      D2
+opbyte_25_entry  0091h      D2
+opbyte_26_entry  0093h      D2
+opbyte_27_entry  0095h      D2
+opbyte_28_entry  0097h      D2
+opbyte_29_entry  0099h      D2
+opbyte_2a_entry  009bh      D2
+opbyte_2b_entry  009dh      D2
+opbyte_2c_entry  009fh      D2
+opbyte_2d_entry  00a1h      D2
+opbyte_2e_entry  00a3h      D2
+opbyte_2f_entry  00a5h      D2
+opbyte_30_entry  00a7h      D2
+opbyte_31_entry  00a9h      D2
+opbyte_32_entry  00abh      D2
+opbyte_33_entry  00adh      D2
+opbyte_34_entry  00afh      D2
+opbyte_35_entry  00b1h      D2
+opbyte_36_entry  00b3h      D2
+opbyte_37_entry  00b5h      D2
+opbyte_38_entry  00b7h      D2
+opbyte_39_entry  00b9h      D2
+opbyte_3a_entry  00bbh      D2
+opbyte_3b_entry  00bdh      D2
+opbyte_3c_entry  00bfh      D2
+opbyte_3d_entry  00c1h      D2
+opbyte_3e_entry  00c3h      D2
+opbyte_3f_entry  00c5h      D2
+opbyte_40_entry  00c7h      D2
+opbyte_41_entry  00c9h      D2
+opbyte_42_entry  00cbh      D2
+opbyte_43_entry  00cdh      D2
+opbyte_44_entry  00cfh      D2
+opbyte_45_entry  00d1h      D2
+opbyte_46_entry  00d3h      D2
+opbyte_47_entry  00d5h      D2
+opbyte_48_entry  00d7h      D2
+opbyte_49_entry  00d9h      D2
+opbyte_4a_entry  00dbh      D2
+opbyte_4b_entry  00ddh      D2
+opbyte_4c_entry  00dfh      D2
+opbyte_4d_entry  00e1h      D2
+opbyte_4e_entry  00e3h      D2
+opbyte_4f_entry  00e5h      D2
+
+EXTRA_IGN_msg    0368h      S15
+A_STACK_msg      0377h      S8
+C_STACK_msg      037fh      S8
+I_STACK_msg      1830h      S8
+
+BAD_SYNTAX_msg   173dh      S12
+DIVIDE_BY_0_msg  1749h      S15
+ARRAY_SIZE_msg   1758h      S11
+ARITH_UNDFL_msg  17ffh      S17
+MEM_ALLOC_msg    1810h      S17
+BAD_ARG_msg      1823h      S13
+STACK_msg        1832h      S6
+
+STOP_str         00ECh      S5
+TRY_str          00F1h      S10
+READY_str        00FBh      S6
+-_str            0101h      S3
+IN_LINE_str      0104h      S8
+
+NO_DATA_msg      1F81h      S8
+ARITH_OVFL_msg   1F8Ah      S15
+PROGRAMMING_msg  1F9Ah      S26
+CANT_CONT_msg    1FA6h      S10
+INVAL_LNR_msg    1Fb5h      S20
+PROM_MODE_msg    1FC9h      S10
+SIGN_ON_msg      1FD3h      S22
+
+###################################################
+#
+#   Internal data addresses used by MCS-51 BASIC
+#
+###################################################
+
+X_0000     0000h   E      ; Not used, reserved
+X_0001     0001h   E      ; Not used, reserved
+X_0002     0002h   E      ; Not used, reserved
+X_0003     0003h   E      ; Not used, reserved
+X_0004     0004h   E      ; Length of the current edited line
+X_0005     0005h   E      ; 'LN NUM' in bin. of current edited line (H)
+X_0006     0006h   E      ; 'LN NUM' in bin. of current edited line (L)
+X_005e     005eh   E      ; Used for 'RUN' trap mode (=34h)
+X_005f     005fh   E      ; Used for 'POWER-UP' trap (=0A5h)
+X_00ff     00ffh   E      ; Control stack overflow
+X_0100     0100h   E      ; Location to save 'GET' character
+X_0101     0101h   E      ; Location to save error character code
+X_0102     0102h   E      ; Location to go to on user 'ONERR' (H)
+X_0103     0103h   E      ; Location to go to on user 'ONERR' (L)
+X_0104     0104h   E      ; Top of variable storage (H)
+X_0105     0105h   E      ; Top of variable storage (L)
+X_0106     0106h   E      ; FP storage allocation (H)
+X_0107     0107h   E      ; FP storage allocation (L)
+X_0108     0108h   E      ; Memory allocated for matrices (H)
+X_0109     0109h   E      ; Memory allocated for matrices (L)
+X_010a     010ah   E      ; Top of memory assigned to basic (H)
+X_010b     010bh   E      ; Top of memory assigned to basic (L)
+X_010c     010ch   E      ; Random number seed (H)
+X_010d     010dh   E      ; Random number seed (L)
+X_0120     0120h   E      ; Location to go to on 'ONEX1' interrupt (H)
+X_0121     0121h   E      ; Location to go to on 'ONEX1' interrupt (L)
+X_0122     0122h   E      ; Number of bytes allocated for strings (H)
+X_0123     0123h   E      ; Number of bytes allocated for strings (L)
+X_0124     0124h   E      ; Software serial port baudrate (H)
+X_0125     0125h   E      ; Software serial port baudrate (L)
+X_0126     0126h   E      ; Line number for 'ONTIME' interrupt (H)
+X_0127     0127h   E      ; Line number for 'ONTIME' interrupt (L)
+X_0128     0128h   E      ; 'NORMAL' PROM programmer timeout (H)
+X_0129     0129h   E      ; 'NORMAL' PROM programmer timeout (L)
+X_012A     012Ah   E      ; 'INTELLIGENT' PROM programmer time out (H)
+X_012b     012bh   E      ; 'INTELLIGENT' PROM programmer time out (L)
+X_012C     012Ch   E      ; Reserved

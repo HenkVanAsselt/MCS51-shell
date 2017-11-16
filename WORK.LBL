@@ -1,0 +1,5 @@
+test_str0  0010h  S5  ; Dit is een test string
+test_str1  001ah  S2  ; Dit is een test string
+test_str2  0020h  S4  ; Dit is een test string
+test_str3  0030h  S2  ; Dit is een test string
+test_str4  0040h  S5  ; Dit is een test string

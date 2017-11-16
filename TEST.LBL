@@ -1,0 +1,4 @@
+LET_token       = 0173h     ; S 5   ; Token strings
+CLEAR_token     = 0177h     ; S 7
+PUSH_token      = 017Dh     ; S 6
+GOTO_token      = 0182h     ; S 6

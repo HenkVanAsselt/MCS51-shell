@@ -1,0 +1,247 @@
+;-----------------------------------------------------------------------------
+; FILE: '8052.LBL' - 8052AH BASIC userdefined labels
+; Date   :930326
+; Version: V0.1
+; Author : HvA
+;-----------------------------------------------------------------------------
+
+;-----------------------------------------------------------------------------
+; Internal memory allocation
+;-----------------------------------------------------------------------------
+
+BASIC_text_ptr_L       0008h I ; Comment
+arg_stack_ptr          0009h I
+BASIC_text_ptr_H       000Ah I
+READ_text_ptr_L        0010h I
+ctrl_stack_ptr         0011h I
+READ_text_ptr_H        0012h I
+BAS_prog_start_H       0013h I
+BAS_prog_start_L       0014h I
+NULL_count             0015h I
+Printhead_pos          0016h I
+FP_out_format          0017h I
+timer1_reload_loc_H    0040h I
+timer1_reload_loc_L    0041h I
+BAS_txtptr_saveloc_H   0042h I
+BAS_txtptr_saveloc_L   0043h I
+Clock_ms               0047h I
+Clock_sec_H            0048h I
+Clock_sec_L            0049h I
+Timer0_reload          004ah I
+ONTIME_user_H          004bh I
+ONTIME_user_L          004ch I
+
+;----------------------------------------------------------------------------
+; Internal registers
+;----------------------------------------------------------------------------
+P0                     0080h I
+SP                     0081h I
+DPL                    0082h I
+DPH                    0083h I
+PCON                   0087h I
+TCON                   0088h I
+TMOD                   0089h I
+TL0                    008Ah I
+TL1                    008Bh I
+TH0                    008Ch I
+TH1                    008Dh I
+P1                     0090h I
+SCON                   0098h I
+SBUF                   0099h I
+P2                     00A0h I
+IE                     00A8h I
+P3                     00B0h I
+IP                     00B8h I
+T2CON                  00C8h I
+RCAP2L                 00CAh I
+RCAP2H                 00CBh I
+TL2                    00CCh I
+TH2                    00CDh I
+PSW                    00D0h I
+ACC                    00E0h I
+B                      00F0h I
+
+;----------------------------------------------------------------------------
+; Internal memory allocation: bit addresses
+;----------------------------------------------------------------------------
+
+ONTIME_executed             0010h  B  ; 1 = 'ONTIME' statement is executed
+BASIC_int_in_prog           0011h  B  ; 1 = basic interrupt in progress
+ONEX1_exe                   0012h  B  ; 1 = 'ONEX1' statement is executed
+ONERR_exe                   0013h  B  ; 1 = 'ONERR' statement is executed
+ONTIME_exe                  0014h  B  ; 1 = 'ONTIME' interrupt in progress
+line_edit                   0015h  B  ; 1 = line is edited
+ext_int_pending             0016h  B  ; 1 = external interrupt pending
+enable_cont                 0017h  B  ; 1 = 'CONT' command will work
+get_flag                    0018h  B  ; 1 = flag for 'GET' operator
+print_list_exe              0019h  B  ; 1 = 'PRINT@' or 'LIST@' evoked
+trap_timer1                 001ah  B  ; Trap 'TIMER1' interrrupt
+LP_CON_out_ctrl             001bh  B  ; 1 = LP CON output control
+user_CON_out_ctrl           001ch  B  ; 1 = user def CON output control
+array_init                  001dh  B  ; Basic array initialization bit
+user_CON_in_ctrl            001eh  B  ; 1 = user def CON input control
+trap_serial_port            001fh  B  ; Trap serial port interrupt
+STOP_CTRLC_found            0020h  B  ; STOP or CTRL encountered
+user_idle_break             0021h  B  ; User idle break bit
+input_exe                   0022h  B  ; 1 = input instruction in progress
+reserved                    0023h  B  ; Reserved
+arg_stack_value             0024h  B  ; 1 = argument stack has a value
+RETI_exe                    0025h  B  ; RETI instruction executed
+trap_ext0                   0026h  B  ; Trap external interrupt 0
+valid_@_driver              0027h  B  ; 1 = valid '...@' driver by user
+soft_trap_test              0028h  B  ; Software trap test
+find_eop                    0029h  B  ; 1 = Find the end of program
+DIM_statement               002ah  B  ; 1 = DIM statement
+int_stat_save               002bh  B  ; Interrupt status save bit
+input_trap                  002ch  B  ; Input trap
+exp_present                 002dh  B  ; 1 = expansion present
+CLOCK1_exe                  002eh  B  ; 1 = 'CLOCK1' executed, else cleared
+command_mode                002fh  B  ; 1 = basic command mode
+disable_CTRLC               0030h  B  ; 1 = disable CONTROL-C
+enable_fake_DMA             0031h  B  ; 1 = enable 'fake' DMA
+output_trap                 0032h  B  ; Output trap
+intelligent_prom            0033h  B  ; 1 = 'INTELLIGENT' PROM programming
+ROM_text                    0034h  B  ; 1 = print text string from ROM
+XOFF_found                  0035h  B  ; 1 = 'CONTROL-S' (XOFF) encountered
+hex_no_zero                 0036h  B  ; 1 = no zeros in 'HEX mode' print
+hex_mode                    0037h  B  ; 1 = 'HEX mode' print
+
+;----------------------------------------------------------------------------
+;  Port 0
+;----------------------------------------------------------------------------
+P0.0                          80h  B ;
+P0.1                          81h  B ;
+P0.2                          82h  B ;
+P0.3                          83h  B ;
+P0.4                          84h  B ;
+P0.5                          85h  B ;
+P0.6                          86h  B ;
+P0.7                          87h  B ;
+
+;----------------------------------------------------------------------------
+; Timer/Counter control Register TCON
+;----------------------------------------------------------------------------
+TF1                           8Fh  B ; TCON.7
+TR1                           8Eh  B ; TCON.6
+TF0                           8Dh  B ; TCON.5
+TR0                           8Ch  B ; TCON.4
+IE1                           8Bh  B ; TCON.3
+IT1                           8Ah  B ; TCON.2
+IE0                           89h  B ; TCON.1
+IT0                           88h  B ; TCON.0
+
+;----------------------------------------------------------------------------
+; Port 1
+;----------------------------------------------------------------------------
+T2                            90h  B ; P1.0
+T2EX                          91h  B ; P1.1
+PWM_OUT                       92h  B ; P1.2
+ALE_DISABLE                   93h  B ; P1.3
+PGM_PULSE                     94h  B ; P1.4
+PGM_ENABLE                    95h  B ; P1.5
+NOT_DMA_ACK                   96h  B ; P1.6
+LP_OUT                        97h  B ; P1.7
+
+;----------------------------------------------------------------------------
+; Serial port Control Register SCON
+;----------------------------------------------------------------------------
+SM0                           9Fh  B ; SCON.7
+SM1                           9Eh  B ; SCON.6
+SM2                           9Dh  B ; SCON.5
+REN                           9Ch  B ; SCON.4
+TB8                           9Bh  B ; SCON.3
+RB8                           9Ah  B ; SCON.2
+TI                            99h  B ; SCON.1
+RI                            98h  B ; SCON.0
+
+;----------------------------------------------------------------------------
+; Port 2
+;----------------------------------------------------------------------------
+P2.0                          A0h  B ; P2.0
+P2.1                          A1h  B ; P2.1
+P2.2                          A2h  B ; P2.2
+P2.3                          A3h  B ; P2.3
+P2.4                          A4h  B ; P2.4
+P2.5                          A5h  B ; P2.5
+P2.6                          A6h  B ; P2.6
+P2.7                          A7h  B ; P2.7
+
+;----------------------------------------------------------------------------
+; Interrupt Enable register
+;----------------------------------------------------------------------------
+EA                            AFh  B ; EA.7
+ET2                           ADh  B ; EA.5  8052 only */
+ES                            ACh  B ; EA.4
+ET1                           ABh  B ; EA.3
+EX1                           AAh  B ; EA.2
+ET0                           A9h  B ; EA.1
+EX0                           A8h  B ; EA.0
+
+;----------------------------------------------------------------------------
+; Port 3
+;----------------------------------------------------------------------------
+P3.0                          B0h  B ; P3.0
+P3.1                          B1h  B ; P3.1
+P3.2                          B2h  B ; P3.2
+P3.3                          B3h  B ; P3.3
+P3.4                          B4h  B ; P3.4
+P3.5                          B5h  B ; P3.5
+P3.6                          B6h  B ; P3.6
+P3.7                          B7h  B ; P3.7
+
+;----------------------------------------------------------------------------
+; Interrupt Priority register
+;----------------------------------------------------------------------------
+PT2                           BDh  B ; IP.5  (8052 only)
+PS                            BCh  B ; IP.4
+PT1                           BBh  B ; IP.3
+PX1                           BAh  B ; IP.2
+PT0                           B9h  B ; IP.1
+PX0                           B8h  B ; IP.0
+
+;----------------------------------------------------------------------------
+; Timer/Counter 2 control Register T2CON (8052 only)
+;----------------------------------------------------------------------------
+TF2                           CFh  B ; T2CON.7
+EXF2                          CEh  B ; T2CON.6
+RCLK                          CDh  B ; T2CON.5
+TCLK                          CCh  B ; T2CON.4
+EXEN2                         CBh  B ; T2CON.3
+TR2                           CAh  B ; T2CON.2
+C/!T2                         C9h  B ; T2CON.1
+CP/!R                         C8h  B ; T2CON.0
+
+;----------------------------------------------------------------------------
+; Program Status Word
+;----------------------------------------------------------------------------
+CY                            D7h  B ; PSW.7
+AC                            D6h  B ; PSW.6
+F0                            D5h  B ; PSW.5
+RS1                           D4h  B ; PSW.4
+RS0                           D3h  B ; PSW.3
+OV                            D2h  B ; PSW.2
+P                             D0h  B ; PSW.0
+
+;----------------------------------------------------------------------------
+; Accumulator
+;----------------------------------------------------------------------------
+ACC.0                         E0h  B ; ACC.0
+ACC.1                         E1h  B ; ACC.1
+ACC.2                         E2h  B ; ACC.2
+ACC.3                         E3h  B ; ACC.3
+ACC.4                         E4h  B ; ACC.4
+ACC.5                         E5h  B ; ACC.5
+ACC.6                         E6h  B ; ACC.6
+ACC.7                         E7h  B ; ACC.7
+
+;----------------------------------------------------------------------------
+; B-register
+;----------------------------------------------------------------------------
+B.0                           F0h  B ; B.0
+B.1                           F1h  B ; B.1
+B.2                           F2h  B ; B.2
+B.3                           F3h  B ; B.3
+B.4                           F4h  B ; B.4
+B.5                           F5h  B ; B.5
+B.6                           F6h  B ; B.6
+B.7                           F7h  B ; B.7

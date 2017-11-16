@@ -1,0 +1,27 @@
+@echo off
+
+: ----- Add 4dos Description file to arj file
+attrib -h -a descript.ion
+arj u mcs51.arj descript.ion
+attrib +h +a descript.ion
+
+arj u mcs51.arj *.awk
+arj u mcs51.arj *.bat *.btm
+arj u mcs51.arj *.doc *.txt
+arj u mcs51.arj *.exe *.com
+arj u mcs51.arj *.lbl
+arj u mcs51.arj *.lnk *.mak
+arj u mcs51.arj *.pas *.bas *.asm
+arj u mcs51.arj buslay.out
+arj u mcs51.arj asm\*.*
+arj u mcs51.arj pas\*.*
+arj u mcs51.arj bas\*.*
+
+SET Choise=N
+INKEY /W20 Backup to floppy (Y/N): %%Choise
+IF "%choise" != "Y" goto end
+
+copy mcs51.arj a:
+copy install.btm a:
+
+:end

@@ -1,0 +1,48 @@
+: -----------------------------------------
+: FILE : Install.BTM
+: DATE : 21-Oct-1993 V0.1
+: DESCR: Installation BTM for MCS51
+: -----------------------------------------
+
+@ECHO OFF
+: ---- Set global variables
+SET Pathname=E:\MCS51
+
+CLS
+TEXT
+
+ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³                                                                        ³
+³ INSTALLATION OF MCS51 Development environment                          ³
+³                                                                        ³
+ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ENDTEXT
+
+echo   Current installation path is %Pathname
+echo.
+
+: ---- Ask for installation directory
+:getpath
+INPUT Give Directory to install or Q(uit): %%Pathname
+IF "%Pathname"=="Q" goto end
+IF "%Pathname"==""  goto getpath
+
+: ----- Set pathnames
+SET ASM=%Pathname\ASM
+SET PAS=%Pathname\BAS
+SET BAS=%Pathname\PAS
+
+: ---- Check if directory exists.
+: ---- If it does not exist, create it, inclusive subdirectories
+IF NOT DIREXIST %Pathname MKDIR %Pathname
+IF NOT DIREXIST %PAS MKDIR %PAS
+IF NOT DIREXIST %BAS MKDIR %BAS
+IF NOT DIREXIST %ASM MKDIR %ASM
+
+: ---- Extract ARJ file to subdirecies
+copy /uv a:\mcs51.arj %Pathname
+cdd %Pathname
+arj x mcs51.arj *.*
+
+:end
